@@ -1,32 +1,28 @@
 ﻿#include "Https.h"
-#include "Person.h"
 #include "FileWriter.h"
 #include "Parse.h"
-#include <vector>
 #include <iostream>
 
 int main()
 {
-	std::cout << "Start\n";
-	std::cout << "==================\n\n";
+	try
+	{
+		const char *const host = "lk.pnzgu.ru";
+		const char *const target = "/phone";
 
-	//get data
-	std::cout << "data retrieval...\n";
-	auto &&data = https::HttpsHelper::get("lk.pnzgu.ru", "/phone");
+		std::cout << "data retrieval...\n";
+		const auto &&data = https::Https::get(host, target);
 
-	//parsing
-	std::cout << "parsing data...\n";
-	auto &&prsns = prs::Parse::parsing(data);
+		std::cout << "parsing data...\n";
+		const auto &&prsns = prs::Parse::parsing(data);
 
-	//output data
-	std::cout << "writing to file...\n";
-	fw::FileWriter::write("data", prsns);
-	
-	std::cout << "\n==================\n";
-	std::cout << "End\n\n";
-	
-	//output info
-	std::cout << "Count persons: " << prsns.size() << "\n\n";
+		std::cout << "writing to file...\n";
+		fw::FileWriter::write("data", prsns);
 
+		std::cout << "Count persons: " << prsns.size() << "\n\n";
+	} catch (const std::exception &ex)
+	{
+		std::cout << ex.what();
+	}
 	return 0;
 }

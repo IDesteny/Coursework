@@ -11,7 +11,7 @@
 #include <boost/beast/http/dynamic_body.hpp>
 #include "Https.h"
 
-std::string https::HttpsHelper::get(const char *host, const char *target)
+std::string https::Https::get(const char *const host, const char *const target)
 {
 	try {
 		boost::asio::io_context ioc;
@@ -45,7 +45,7 @@ std::string https::HttpsHelper::get(const char *host, const char *target)
 		}
 		
 		return boost::beast::buffers_to_string(res.body().data());
-	} catch (const std::exception &e) { throw e; }
+	} catch (...) { throw; }
 }
 
 #pragma region HTTP

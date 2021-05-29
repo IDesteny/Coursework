@@ -5,7 +5,7 @@ std::vector<Person> prs::Parse::parsing(const std::string &data)
 {
 	std::vector<Person> persons;
 
-	const char * const rgxs[] {
+	const char *const rgxs[] {
 		"<span style=\"display: none;\">(.*)</span>",
 		"<a href=\"(.*?)\"",
 		"<b>(.*)</b>",
@@ -19,14 +19,14 @@ std::vector<Person> prs::Parse::parsing(const std::string &data)
 	boost::smatch res;
 	boost::regex_search(data, res, rgx);
 
-	auto &&data2 = res[1].str();
+	const auto &&data2 = res[1].str();
 
 	//specific person
 	boost::regex rgx2("<tr >(.*?)</tr>");
 	boost::smatch res2;
 
-	std::string::const_iterator &&cbegin = data2.cbegin();
-	std::string::const_iterator &&cend = data2.cend();
+	auto &&cbegin = data2.cbegin();
+	const auto &&cend = data2.cend();
 
 	//fields person
 	boost::regex rgx3("<td>(.*?)</td>");

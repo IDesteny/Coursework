@@ -7,6 +7,6 @@ namespace fw
 	class FileWriter
 	{
 	public:
-		static void __fastcall write(const char *, const std::vector<Person> &);
+		static void __fastcall write(const char *const, const std::vector<Person> &);
 	};
 }

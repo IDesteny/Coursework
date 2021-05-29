@@ -3,9 +3,9 @@
 
 namespace https
 {
-	class HttpsHelper
+	class Https
 	{
 	public:
-		static std::string __fastcall get(const char *, const char *);
+		static std::string __fastcall get(const char *const, const char *const);
 	};
 }

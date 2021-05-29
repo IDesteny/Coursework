@@ -1,15 +1,15 @@
 #include "FileWriter.h"
 #include <fstream>
-#include <iostream>
 #include <direct.h>
 
-void fw::FileWriter::write(const char *name, const std::vector<Person> &prsns)
+void fw::FileWriter::write(const char *const name, const std::vector<Person> &prsns)
 {
-	_mkdir(name);
-	std::ofstream f;
+	if (_mkdir(name) == -1 && errno == ENOENT)
+		throw std::exception("failed to create folder");
 
+	std::ofstream f;
 	const auto &&dirname = std::string(name) + '/';
-	
+
 	for (int i = 0; i < prsns.size(); ++i)
 	{
 		f.open(dirname + std::to_string(i) + ".txt");
