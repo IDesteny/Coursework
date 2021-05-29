@@ -19,10 +19,12 @@ int main()
 		std::cout << "writing to file...\n";
 		fw::FileWriter::write("data", prsns);
 
-		std::cout << "Count persons: " << prsns.size() << "\n\n";
+		std::cout << "Count persons: ";
+		std::cout << prsns.size() << "\n\n";
+
 	} catch (const std::exception &ex)
 	{
-		std::cout << ex.what();
+		std::cout << ex.what() << std::endl;
 	}
 	return 0;
 }
