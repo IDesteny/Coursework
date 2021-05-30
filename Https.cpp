@@ -9,7 +9,7 @@
 #include <boost/beast/version.hpp>
 #include <boost/beast/core.hpp>
 #include <boost/beast/http/dynamic_body.hpp>
-#include "Https.h"
+#include "Https.hpp"
 
 std::string https::Https::get(const char *const host, const char *const target)
 {

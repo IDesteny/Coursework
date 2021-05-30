@@ -1,6 +1,6 @@
-﻿#include "Https.h"
-#include "FileWriter.h"
-#include "Parse.h"
+﻿#include "Https.hpp"
+#include "FileWriter.hpp"
+#include "Parse.hpp"
 #include <iostream>
 
 int main()

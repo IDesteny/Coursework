@@ -1,4 +1,4 @@
-#include "Parse.h"
+#include "Parse.hpp"
 #include <boost/regex.hpp>
 
 std::vector<Person> prs::Parse::parsing(const std::string &data)
@@ -15,21 +15,21 @@ std::vector<Person> prs::Parse::parsing(const std::string &data)
 	};
 
 	//full information
-	boost::regex rgx("<tbody>(.*?)</tbody>");
+	const boost::regex rgx("<tbody>(.*?)</tbody>");
 	boost::smatch res;
 	boost::regex_search(data, res, rgx);
 
 	const auto &&data2 = res[1].str();
 
 	//specific person
-	boost::regex rgx2("<tr >(.*?)</tr>");
+	const boost::regex rgx2("<tr >(.*?)</tr>");
 	boost::smatch res2;
 
 	auto &&cbegin = data2.cbegin();
 	const auto &&cend = data2.cend();
 
 	//fields person
-	boost::regex rgx3("<td>(.*?)</td>");
+	const boost::regex rgx3("<td>(.*?)</td>");
 	boost::smatch res3;
 
 	std::string::const_iterator cbegin2;
