@@ -8,6 +8,6 @@ namespace prs
 	class Parse
 	{
 	public:
-		static std::vector<Person> __fastcall parsing(const std::string &);
+		static std::vector<Person> parsing(const std::string &);
 	};
 }
