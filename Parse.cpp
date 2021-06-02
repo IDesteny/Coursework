@@ -3,6 +3,8 @@
 
 std::vector<Person> prs::Parse::parsing(const std::string &data)
 {
+	if (data.empty()) throw std::exception("parse: There is no data");
+
 	std::vector<Person> persons;
 
 	const char *const rgxs[] {
@@ -45,6 +47,8 @@ std::vector<Person> prs::Parse::parsing(const std::string &data)
 
 	while (boost::regex_search(cbegin, cend, res2, rgx2))
 	{
+		prsn = Person();
+
 		//data about him
 		const auto &&data3 = res2[1].str();
 		

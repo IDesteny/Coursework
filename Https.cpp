@@ -45,7 +45,14 @@ std::string https::Https::get(const char *const host, const char *const target)
 		}
 		
 		return boost::beast::buffers_to_string(res.body().data());
-	} catch (...) { throw; }
+	}
+	catch (...)
+	{
+		//set lang
+		SetThreadUILanguage(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
+
+		throw;
+	}
 }
 
 #pragma region HTTP

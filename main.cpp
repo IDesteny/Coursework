@@ -3,23 +3,25 @@
 #include "Parse.hpp"
 #include <iostream>
 
+#define stdout(msg) std::cout << msg;
+
 int main()
 {
 	try
 	{
-		const char *const host = "lk.pnzgu.ru";
-		const char *const target = "/phone";
+		auto host = "lk.pnzgu.ru";
+		auto target = "/phone";
 
-		std::cout << "data retrieval...\n";
-		const auto &&data = https::Https::get(host, target);
+		stdout("data retrieval...\n");
+		auto data = https::Https::get(host, target);
 
-		std::cout << "parsing data...\n";
-		const auto &&prsns = prs::Parse::parsing(data);
+		stdout("parsing data...\n");
+		auto prsns = prs::Parse::parsing(data);
 
-		std::cout << "writing to file...\n";
+		stdout("writing to file...\n");
 		fw::FileWriter::write("data", prsns);
 
-		std::cout << "Count persons: ";
+		stdout("Count persons: ");
 		std::cout << prsns.size() << "\n\n";
 
 	} catch (const std::exception &ex)

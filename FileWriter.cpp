@@ -1,11 +1,15 @@
 #include "FileWriter.hpp"
 #include <fstream>
 #include <direct.h>
+#include <iostream>
 
 void fw::FileWriter::write(const char *const name, const std::vector<Person> &prsns)
 {
-	if (_mkdir(name) == -1 && errno == ENOENT)
-		throw std::exception("failed to create folder");
+	if (prsns.empty())
+		throw std::exception("fileWriter: There is no data");
+
+	if (_mkdir(name) == -1 && errno == EINVAL)
+		throw std::exception("fileWriter: Failed to create folder");
 
 	std::ofstream f;
 	const auto &&dirname = std::string(name) + '/';
@@ -14,12 +18,12 @@ void fw::FileWriter::write(const char *const name, const std::vector<Person> &pr
 	{
 		f.open(dirname + std::to_string(i) + ".txt");
 
-		f << "name:\t\t" + prsns[i].name + '\n';
-		f << "position:\t" + prsns[i].position + '\n';
-		f << "subdivision:\t" + prsns[i].subdivision + '\n';
-		f << "audience:\t" + prsns[i].audience + '\n';
-		f << "phone:\t\t" + prsns[i].phone + '\n';
-		f << "link:\t\t" + prsns[i].link + '\n';
+		f << "name:\t\t" << prsns[i].name << '\n';
+		f << "position:\t" << prsns[i].position << '\n';
+		f << "subdivision:\t" << prsns[i].subdivision << '\n';
+		f << "audience:\t" << prsns[i].audience << '\n';
+		f << "phone:\t\t" << prsns[i].phone << '\n';
+		f << "link:\t\t" << prsns[i].link << '\n';
 	
 		f.close();
 	}
