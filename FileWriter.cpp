@@ -1,7 +1,6 @@
 #include "FileWriter.hpp"
 #include <fstream>
 #include <direct.h>
-#include <iostream>
 
 void fw::FileWriter::write(const char *const name, const std::vector<Person> &prsns)
 {
